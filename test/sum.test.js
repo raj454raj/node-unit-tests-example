@@ -71,4 +71,31 @@ describe("Test sum functionalities", function() {
 
   });
 
+  describe("sumWrapper", function() {
+
+    it("calls addTwoNumbers if howToAdd is justNumbers", function() {
+      let addTwoNumbersStub = sinon.stub(sum, "addTwoNumbers");
+      addTwoNumbersStub.withArgs(4, 5).returns(9);
+
+      assert.equal(sum.sumWrapper({howToAdd: "justNumbers"}, 4, 5), 9);
+
+      sinon.assert.calledOnce(addTwoNumbersStub);
+      addTwoNumbersStub.restore();
+    });
+
+    it("calls addMultipleTypes if howToAdd is multipleTypes", function() {
+      let addMultipleTypesStub = sinon.stub(sum, "addMultipleTypes");
+      addMultipleTypesStub.withArgs("a", "b").returns("ab");
+
+      assert.equal(sum.sumWrapper({howToAdd: "multipleTypes"}, "a", "b"), "ab");
+
+      sinon.assert.calledOnce(addMultipleTypesStub);
+      addMultipleTypesStub.restore();
+    });
+
+    it("returns INVALID_CONFIG if howToAdd is not in ('justNumbers', 'multipleTypes')", function() {
+      assert.equal(sum.sumWrapper({howToAdd: "somethingInvalid"}, "a", "b"), "INVALID_CONFIG");
+    });
+  });
+
 });

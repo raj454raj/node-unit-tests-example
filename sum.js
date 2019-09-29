@@ -29,8 +29,10 @@ const SumThings = function() {
   const sumWrapper = function(thisConfig, a, b) {
     if (thisConfig.howToAdd === "multipleTypes") {
       return this.addMultipleTypes(a, b);
-    } else {
+    } else if (thisConfig.howToAdd === "justNumbers") {
       return this.addTwoNumbers(a, b);
+    } else {
+      return "INVALID_CONFIG";
     }
   };
 
