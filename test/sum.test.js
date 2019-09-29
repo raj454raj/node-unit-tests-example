@@ -1,6 +1,5 @@
 const SumThings = require('../sum.js').SumThings,
       assert = require('assert'),
-      expect = require('chai').expect,
       sinon = require('sinon');
 
 
